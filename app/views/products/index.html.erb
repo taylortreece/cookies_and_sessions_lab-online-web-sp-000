@@ -1,0 +1,14 @@
+<h1>Your cart: </h1>
+
+    <% @cart.each do |id| %>
+        <%= Product.find(id).name %>
+    <% end %>
+
+
+<h2>Add products to your cart: </h2>
+
+<%= form_for Product.new do |product_builder| %>
+    <%= product_builder.text_field :name, id: "product" %>
+
+    <%= product_builder.submit "add to cart" %>
+<%end%>
