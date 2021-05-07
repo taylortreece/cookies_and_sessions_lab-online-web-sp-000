@@ -1,16 +1,17 @@
 class ProductsController < ApplicationController
 
     def index
-        @product = Product.new
-        session[:cart] || session[:cart] = []
-        @cart = session[:cart]
-    end
-
-    def create
-        product = Product.create(name: params[:product][:name])
-        session[:cart] << product.id
-
-        redirect_to '/'
-    end
-
+        @cart = cart
+      end
+    
+      def add
+        cart << product_params
+        redirect_to :products
+      end
+    
+      private
+    
+      def product_params
+        params.require(:product)
+      end
 end
